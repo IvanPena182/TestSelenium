@@ -1,0 +1,52 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+using System.Threading;
+
+namespace PruebaChoucair
+{
+	class Program
+	{
+		static void Main(string[] args)
+		{
+			IWebDriver driver = new FirefoxDriver();
+			driver.Navigate().GoToUrl("https://www.choucairtesting.com/empleos-testing/");
+			driver.Manage().Window.Maximize();
+			//Información en Keywords
+			IWebElement input = driver.FindElement(By.Id("search_keywords"));
+			input.SendKeys("An");
+			input.SendKeys(Keys.Return);
+			Thread.Sleep(3000);
+			input.Clear();
+			//Sin información en Keywords
+			IWebElement input2 = driver.FindElement(By.Id("search_keywords"));
+			input2.SendKeys("");
+			input2.SendKeys(Keys.Return);
+			Thread.Sleep(3000);
+			input2.Clear();
+			//Información en Location
+			IWebElement input3 = driver.FindElement(By.Id("search_location"));
+			input3.SendKeys("Med");
+			input3.SendKeys(Keys.Return);
+			Thread.Sleep(3000);
+			input3.Clear();
+			//Sin Información en Location
+			IWebElement input4 = driver.FindElement(By.Id("search_location"));
+			input4.SendKeys("");
+			input4.SendKeys(Keys.Return);
+			Thread.Sleep(3000);
+			input4.Clear();
+			//Con información en ambos campos
+			IWebElement input5 = driver.FindElement(By.Id("search_keywords"));
+			IWebElement input6 = driver.FindElement(By.Id("search_location"));
+			input5.SendKeys("An");
+			input6.SendKeys("Med");
+			input6.SendKeys(Keys.Return);
+
+		}
+	}
+}
